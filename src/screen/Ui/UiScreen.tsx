@@ -1,130 +1,158 @@
-import React,{useState,useEffect} from 'react';
-import { Text, View, StyleSheet, ScrollView, Animated,Image, TouchableOpacity } from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {
+  Text,
+  View,
+  StyleSheet,
+  ScrollView,
+  Animated,
+  Image,
+  TouchableOpacity,
+} from 'react-native';
 import FastImage from 'react-native-fast-image';
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { faStore, faStar, faHeart } from '@fortawesome/free-solid-svg-icons';
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
+import {faStore, faStar, faHeart} from '@fortawesome/free-solid-svg-icons';
 import {ProductService} from '../../services/index';
-import ProductImageSlider from '../../components/ProductImageSlider'
+import ProductImageSlider from '../../components/ProductImageSlider';
+import Footer from './Footer'
 
+
+ 
 
 const UiScreen = () => {
+  const [productData, setProductData] = useState(null);
 
-    const [productData, setProductData] = useState(null);
+  useEffect(() => {
+    const fetchProduct = async () => {
+      const response = await ProductService.getProduct(98);
+      setProductData(response.data);
+    };
 
-    console.log('product_image',productData?.products?.product_image);
+    fetchProduct();
+  }, []);
 
-    useEffect(() => {
-      const fetchProduct = async () => {
-        const response = await ProductService.getProduct(98);
-        setProductData(response.data);
-      };
-  
-      fetchProduct();
-    }, []);
-   
-    return (
-        <ScrollView style={styles.container}>
-        
-          <ProductImageSlider productData={productData} />
-    
-    <View style={styles.contentContainer}>
+
+
+  return (
+    <>
+    <ScrollView style={styles.container}>
+      <ProductImageSlider productData={productData} />
+
+      <View style={styles.contentContainer}>
         {/* Product Name */}
-        <Text style={styles.productName}>{productData?.products?.product_title}</Text>
+        <Text style={styles.productName}>
+          {productData?.products?.product_title}
+        </Text>
 
         {/* Rating, Sold, and Like Row */}
         <View style={styles.ratingLikeRow}>
-            {/* Rating and Sold Section */}
-            <View style={styles.ratingSoldContainer}>
+          {/* Rating and Sold Section */}
+          <View style={styles.ratingSoldContainer}>
             {[...Array(5)].map((_, index) => (
-                <FontAwesomeIcon key={index} icon={faStar} size={16} color="gold" />
+              <FontAwesomeIcon
+                key={index}
+                icon={faStar}
+                size={16}
+                color="gold"
+              />
             ))}
             <Text style={styles.ratingText}>5.0</Text>
             <Text style={styles.soldText}>
-                ขายแล้ว{' '}
-                <Text style={styles.soldText__number}>100</Text>
-                </Text>
-            </View>
-            
-            {/* Like Section */}
-            <View style={styles.likeContainer}>
+              ขายแล้ว <Text style={styles.soldText__number}>100</Text>
+            </Text>
+          </View>
+
+          {/* Like Section */}
+          <View style={styles.likeContainer}>
             <FontAwesomeIcon icon={faHeart} size={16} color="red" />
             <Text style={styles.likeText}>ถูกใจ (4)</Text>
-            </View>
+          </View>
         </View>
 
         {/* Price Section */}
         <View style={styles.priceContainer}>
-            <Text style={styles.actualPrice}>฿{productData?.products?.product_discounted_price}</Text>
-            <Text style={styles.originalPrice}>฿{productData?.products?.product_normal_price}</Text>
-            <View style={styles.discountBadge}>
+          <Text style={styles.actualPrice}>
+            ฿{productData?.products?.product_discounted_price}
+          </Text>
+          <Text style={styles.originalPrice}>
+            ฿{productData?.products?.product_normal_price}
+          </Text>
+          <View style={styles.discountBadge}>
             <Text style={styles.discountText}>10%</Text>
-            </View>
+          </View>
         </View>
 
         {/* Coupon Section */}
         <View style={styles.couponCon}>
-        <Text style={styles.soldText}>คูปองส่วนลด</Text>
+          <Text style={styles.soldText}>คูปองส่วนลด</Text>
         </View>
         <View style={styles.couponContainer}>
-            <Text style={styles.couponText}>ส่วนลด</Text>
+          <Text style={styles.couponText}>ส่วนลด</Text>
         </View>
 
         {/* Product Options */}
         <View style={styles.couponCon}>
-        <Text style={styles.soldText}>กลิ่น : มะลิ</Text>
+          <Text style={styles.soldText}>กลิ่น : มะลิ</Text>
         </View>
-      <View style={styles.optionsContainer}>
-        {[...Array(5)].map((_, index) => (
-          <Image
-            key={index}
-            style={styles.optionImage}
-            source={{ uri: 'https://uatseller.petsploy.com/uploads/member/24/store/product/e203ecc0cf1fe2548493ff42ad3500fb.webp' }}
-          />
-        ))}
-      </View>
+        <View style={styles.optionsContainer}>
+          {[...Array(5)].map((_, index) => (
+            <Image
+              key={index}
+              style={styles.optionImage}
+              source={{
+                uri: 'https://uatseller.petsploy.com/uploads/member/24/store/product/e203ecc0cf1fe2548493ff42ad3500fb.webp',
+              }}
+            />
+          ))}
+        </View>
 
-
-       {/* Divider */}
-       <View style={styles.divider} />
+        {/* Divider */}
+        <View style={styles.divider} />
 
         {/* Store Info */}
         <View style={styles.storeInfoContainer}>
-        <Image
+          <Image
             style={styles.storeLogo}
-            source={{ uri: 'https://uatseller.petsploy.com/uploads/member/24/store/product/e203ecc0cf1fe2548493ff42ad3500fb.webp' }}
-        />
-        <View style={styles.storeTextContainer}>
+            source={{
+              uri: 'https://uatseller.petsploy.com/uploads/member/24/store/product/e203ecc0cf1fe2548493ff42ad3500fb.webp',
+            }}
+          />
+          <View style={styles.storeTextContainer}>
             <Text style={styles.storeName}>Jomo Feed Happiness</Text>
             <Text style={styles.soldText}>Active 2 ชั่วโมงที่ผ่านมา</Text>
             <View style={styles.ratingSoldContainer}>
-            {[...Array(5)].map((_, index) => (
-                <FontAwesomeIcon key={index} icon={faStar} size={16} color="gold" />
-            ))}
-            <Text style={styles.ratingText}>5.0</Text>
-            <Text style={styles.soldText}>
-                รายการสินค้า{' '}
-                <Text style={styles.soldText__number}>100</Text>
-                </Text>
+              {[...Array(5)].map((_, index) => (
+                <FontAwesomeIcon
+                  key={index}
+                  icon={faStar}
+                  size={16}
+                  color="gold"
+                />
+              ))}
+              <Text style={styles.ratingText}>5.0</Text>
+              <Text style={styles.soldText}>
+                รายการสินค้า <Text style={styles.soldText__number}>100</Text>
+              </Text>
             </View>
-            <Text style={styles.soldText}>เริ่มขาย <Text style={styles.soldText__number}>06 ก.พ. 2563</Text> </Text>
-        </View> 
-    </View>
-
-    <View style={{marginTop: 20 ,width: '100%'}}>
-        <TouchableOpacity  style={styles.button} >
-      <View style={styles.iconContainer}>
-        <FontAwesomeIcon icon={faStore} size={16} color="gray" />
-      </View>
-      <Text style={styles.text}>ดูร้านค้า</Text>
-    </TouchableOpacity>
-    </View>
-
-
+            <Text style={styles.soldText}>
+              เริ่มขาย <Text style={styles.soldText__number}>06 ก.พ. 2563</Text>{' '}
+            </Text>
+          </View>
         </View>
 
-        </ScrollView>
-      );
-    };
+        <View style={{marginTop: 20, width: '100%'}}>
+          <TouchableOpacity style={styles.button}>
+            <View style={styles.iconContainer}>
+              <FontAwesomeIcon icon={faStore} size={16} color="gray" />
+            </View>
+            <Text style={styles.text}>ดูร้านค้า</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+    </ScrollView>
+
+    <Footer/>
+    </> );
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -257,7 +285,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     marginBottom: 4,
   },
-  button: { 
+  button: {
     borderRadius: 8,
     borderWidth: 1,
     borderColor: 'lightgray',
