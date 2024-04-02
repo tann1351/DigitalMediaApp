@@ -15,11 +15,78 @@ import {ProductService} from '../../services/index';
 import ProductImageSlider from '../../components/ProductImageSlider';
 import Footer from './Footer'
 
+interface ProductProp {
+  products: Product; 
+}
+
+interface Product {
+  service_start_day: string; 
+  service_expired_day: string;
+  store_id: number;
+  product_id: number;
+  product_type: "Product" | "Service";
+  product_title: string;
+  product_sku: string;
+  product_sold: number;
+  product_views: number;
+  product_slug: string;
+  product_detail: string;
+  product_thumbnail_image_url: string | null;
+  product_vdo: string;
+  product_percentage_discount: number;
+  product_normal_price: number;
+  product_discounted_price: number;
+  product_score: number;
+  product_quantity: number;
+  product_stock: number;
+  product_best_seller: number;
+  favorite: number;
+  product_tax_invoice_option: number;
+  product_warranty_option: number;
+  product_warranty_period_option: number;
+  product_refund_warranty_condition: string;
+  service_type: string | null;
+  service_booking_day: number;
+  service_cancel_day: number;
+  product_image: ProductImage[];
+  product_option: ProductOption[];
+  coupon_in_product: any[];
+}
+
+interface ProductImage {
+  sort: number;
+  image_url: string;
+}
+
+interface ProductOption {
+  option_id: number;
+  option_title: string;
+  option_name: string;
+  option_sku: string;
+  option_stock: number;
+  option_price: number;
+  option_discount: number;
+  option_image: string | null;
+  product_option_sort: number;
+  option_child: ProductOptionChild[];
+}
+
+interface ProductOptionChild {
+  option_id: number;
+  option_title: string;
+  option_name: string;
+  option_sku: string;
+  option_stock: number;
+  option_price: number;
+  option_discount: number;
+  option_image: string | null;
+  product_option_sort: number;
+}
 
  
 
 const UiScreen = () => {
-  const [productData, setProductData] = useState(null);
+  const [productData, setProductData] = useState<ProductProp>();
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -57,7 +124,7 @@ const UiScreen = () => {
             ))}
             <Text style={styles.ratingText}>5.0</Text>
             <Text style={styles.soldText}>
-              ขายแล้ว <Text style={styles.soldText__number}>100</Text>
+              ขายแล้ว <Text style={styles.soldText__number}>{productData?.products?.product_sold}</Text>
             </Text>
           </View>
 
@@ -77,7 +144,7 @@ const UiScreen = () => {
             ฿{productData?.products?.product_normal_price}
           </Text>
           <View style={styles.discountBadge}>
-            <Text style={styles.discountText}>10%</Text>
+            <Text style={styles.discountText}>{productData?.products?.product_percentage_discount}%</Text>
           </View>
         </View>
 
@@ -94,7 +161,7 @@ const UiScreen = () => {
           <Text style={styles.soldText}>กลิ่น : มะลิ</Text>
         </View>
         <View style={styles.optionsContainer}>
-          {[...Array(5)].map((_, index) => (
+          {productData?.products?.product_option?.map((_, index) => (
             <Image
               key={index}
               style={styles.optionImage}
@@ -130,7 +197,7 @@ const UiScreen = () => {
               ))}
               <Text style={styles.ratingText}>5.0</Text>
               <Text style={styles.soldText}>
-                รายการสินค้า <Text style={styles.soldText__number}>100</Text>
+                รายการสินค้า <Text style={styles.soldText__number}>{productData?.products?.product_views}</Text>
               </Text>
             </View>
             <Text style={styles.soldText}>
