@@ -1,15 +1,15 @@
 import React from 'react';
 import { StyleSheet, View, Text, TouchableOpacity, Image } from 'react-native';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
-import {faCommentDots,faCartShopping} from '@fortawesome/free-regular-svg-icons'; 
+import {faCommentDots,faCartShopping} from '@fortawesome/free-solid-svg-icons'; 
 const Footer = () => {
   return ( 
     <View style={styles.footer}>
-       <View >
+       <View style={{alignItems:'center' ,justifyContent:'center'}}>
             <FontAwesomeIcon icon={faCommentDots} size={16} color="gray" />
             <Text style={styles.likeText}>ถูกใจ (4)</Text>
           </View>
-          <View >
+          <View style={{alignItems:'center' ,justifyContent:'center'}}>
             <FontAwesomeIcon icon={faCartShopping} size={16} color="gray" />
             <Text style={styles.likeText}>เพิ่มไปยังรถเข็น</Text>
           </View>
@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     backgroundColor: '#ffffff',
-    height: 70,
+    height: 100,
     paddingHorizontal: 10,
   },
   chatButton: {
@@ -66,6 +66,7 @@ const styles = StyleSheet.create({
   },
   likeText: {
     marginLeft: 10,
+    marginTop:10
   },
 });
 
