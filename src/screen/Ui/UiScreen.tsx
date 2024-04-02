@@ -317,7 +317,8 @@ const styles = StyleSheet.create({
   },
   optionsContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-around',
+    justifyContent: 'flex-start',
+     
     width: '100%',
     marginTop: 8,
   },
@@ -325,6 +326,7 @@ const styles = StyleSheet.create({
     width: 65,
     height: 70,
     borderRadius: 10,
+    marginRight:10
   },
   divider: {
     height: 2,
