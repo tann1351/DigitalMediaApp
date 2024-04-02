@@ -14,12 +14,12 @@ const MapScreen = () => {
  <View>
         <MapView
           style={styles.map}
-          provider={PROVIDER_GOOGLE} 
+          
           initialRegion={{
             latitude: 13.736717,
             longitude: 100.523186,
-            latitudeDelta: 0.0015,
-            longitudeDelta: 0.005,
+            latitudeDelta: 0.008,
+            longitudeDelta: 0.008,
           }}>
 
        
@@ -35,7 +35,7 @@ const MapScreen = () => {
             fillColor={'rgba(135, 206, 235, 0.5)'}
             strokeWidth={2}  
             lineDashPhase={0}
-            lineDashPattern={[10, 20]}
+            lineDashPattern={[20, 5]}
         />
 
       
@@ -59,7 +59,8 @@ const MapScreen = () => {
 const styles = StyleSheet.create({ 
   
   map: {
-    height: '100%',  
+    height: '100%', 
+     
   },
   marker: {
     backgroundColor: 'white',
