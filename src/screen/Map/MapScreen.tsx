@@ -11,14 +11,14 @@ const MapScreen = () => {
 
   return (
     <>
- <View style={styles.continer}>
+ <View>
         <MapView
           style={styles.map}
           provider={PROVIDER_GOOGLE} 
           initialRegion={{
             latitude: 13.736717,
             longitude: 100.523186,
-            latitudeDelta: 0.005,
+            latitudeDelta: 0.0015,
             longitudeDelta: 0.005,
           }}>
 
@@ -57,10 +57,7 @@ const MapScreen = () => {
 };
 
 const styles = StyleSheet.create({ 
-    continer:{
-        height: '100%',  
-        flex:1
-    },
+  
   map: {
     height: '100%',  
   },
