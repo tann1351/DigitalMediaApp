@@ -28,6 +28,14 @@ end
 target 'DigitalMediaApp' do
   config = use_native_modules!
 
+  # Podfile
+pod 'react-native-maps', path: '../node_modules/react-native-maps'
+pod 'react-native-google-maps', path: '../node_modules/react-native-maps' # <- สำหรับ Google Maps
+pod 'GoogleMaps'
+pod 'Google-Maps-iOS-Utils'
+
+
+
   use_react_native!(
     :path => config[:reactNativePath],
     # Enables Flipper.

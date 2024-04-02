@@ -10,19 +10,21 @@ import Carousel, {Pagination} from 'react-native-snap-carousel';
 import FastImage from 'react-native-fast-image';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faAngleLeft, faCartShopping, faShareNodes} from '@fortawesome/free-solid-svg-icons';
+import { useNavigation } from '@react-navigation/native';
+
  
 const {width: viewportWidth ,height} = Dimensions.get('window');
 const buttonTop = (height / 16); // คำนวณค่า top ตรงกลางของหน้าจอ
 
 const ProductImageSlider = ({productData}: any) => {
   const [activeSlide, setActiveSlide] = useState(0);
- 
+  const navigation = useNavigation();
 
   const renderItem = ({item}: any) => (
     <View>
 
       {/* Back Button */}
-      <TouchableOpacity style={styles.backButton}>
+      <TouchableOpacity style={styles.backButton} onPress={()=> navigation.goBack()}>
       <FontAwesomeIcon icon={faAngleLeft} size={16} color="gray" />
       </TouchableOpacity>
 
