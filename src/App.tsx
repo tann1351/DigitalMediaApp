@@ -7,7 +7,7 @@ import MapScreen from './screen/Map/MapScreen';
 
 const Stack = createNativeStackNavigator();
 
-function HomeScreen({navigation}) {
+function HomeScreen({navigation} :any) {
 
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}> 

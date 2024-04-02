@@ -224,16 +224,16 @@ const UiScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    width: '100%', // Ensure the container fills the width
+    width: '100%', 
   },
   image: {
-    width: '100%', // Make image width 100% of the screen
-    height: 300, // Fixed height for the image
+    width: '100%', 
+    height: 300, 
   },
   contentContainer: {
-    paddingHorizontal: 20, // Add padding on the left and right
-    alignItems: 'flex-start', // Align items to the start (left)
-    width: '100%', // Ensure this container takes up full width
+    paddingHorizontal: 20, 
+    alignItems: 'flex-start',
+    width: '100%', 
   },
   productName: {
     fontSize: 18,
@@ -243,8 +243,8 @@ const styles = StyleSheet.create({
   ratingLikeRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between', // Adjust this to spread content
-    width: '100%', // Ensure the row takes full width
+    justifyContent: 'space-between', 
+    width: '100%', 
     marginTop: 15,
   },
   ratingSoldContainer: {
@@ -309,8 +309,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'red',
     paddingHorizontal: 20,
     paddingVertical: 5,
-    alignSelf: 'flex-start', // Adjust as needed for alignment
-    borderRadius: 5, // Adjust if you prefer rounded corners
+    alignSelf: 'flex-start', 
+    borderRadius: 5,
   },
   couponText: {
     color: 'white',
@@ -340,8 +340,8 @@ const styles = StyleSheet.create({
   },
   storeLogo: {
     width: '20%',
-    aspectRatio: 1, // To keep the aspect ratio
-    borderRadius: 50, // Adjust to make it round
+    aspectRatio: 1, 
+    borderRadius: 50, 
   },
   storeTextContainer: {
     marginLeft: 20,
